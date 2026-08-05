@@ -1,121 +1,87 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <section id="center">
-        <div className="hero">
-          <img src={heroImg} className="base" width="170" height="179" alt="" />
-          <img src={reactLogo} className="framework" alt="React logo" />
-          <img src={viteLogo} className="vite" alt="Vite logo" />
+    <div className="app">
+      <header className="hero">
+        <p className="eyebrow">RuntimeGuardJS Version 2</p>
+
+        <h1>A Runtime policy enforcement for third party JavaScript</h1>
+
+        <p className="hero-description">
+          This is a browser security research prototype and interactive learning tool
+          created to study how selected JavaScript actions can be monitored,
+          explained, allowed, or blocked at runtime.
+        </p>
+
+        <div className="hero-actions">
+          <button className="primary-button">Explore the Project</button>
+          <button className="secondary-button">View Research Plan</button>
         </div>
-        <div>
-          <h1>Get started</h1>
+      </header>
+
+      <main className="content">
+        <section className="intro">
+          <h2>Project Overview</h2>
+
           <p>
-            Edit <code>src/App.tsx</code> and save to test <code>HMR</code>
+            One thing I have learned is that third party JavaScript can provide useful website features, but it
+            may also receive access to browser data and network APIs. This project explores how a lightweight runtime 
+            monitor can enforce policies on selected actions.
           </p>
-        </div>
-        <button
-          type="button"
-          className="counter"
-          onClick={() => setCount((count) => count + 1)}
-        >
-          Count is {count}
-        </button>
-      </section>
+        </section>
 
-      <div className="ticks"></div>
+        <section className="card-grid">
+          <article className="info-card">
+            <h3>What I am building</h3>
+            <p>
+              This browser based system checks selected actions made by third party JavaScript and allows or blocks them based on a set of security rules. It also records each decision, 
+              allowing users to see which actions were attempted and whether they were permitted
 
-      <section id="next-steps">
-        <div id="docs">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#documentation-icon"></use>
-          </svg>
-          <h2>Documentation</h2>
-          <p>Your questions, answered</p>
-          <ul>
-            <li>
-              <a href="https://vite.dev/" target="_blank">
-                <img className="logo" src={viteLogo} alt="" />
-                Explore Vite
-              </a>
-            </li>
-            <li>
-              <a href="https://react.dev/" target="_blank">
-                <img className="button-icon" src={reactLogo} alt="" />
-                Learn more
-              </a>
-            </li>
-          </ul>
-        </div>
-        <div id="social">
-          <svg className="icon" role="presentation" aria-hidden="true">
-            <use href="/icons.svg#social-icon"></use>
-          </svg>
-          <h2>Connect with us</h2>
-          <p>Join the Vite community</p>
-          <ul>
-            <li>
-              <a href="https://github.com/vitejs/vite" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#github-icon"></use>
-                </svg>
-                GitHub
-              </a>
-            </li>
-            <li>
-              <a href="https://chat.vite.dev/" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#discord-icon"></use>
-                </svg>
-                Discord
-              </a>
-            </li>
-            <li>
-              <a href="https://x.com/vite_js" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#x-icon"></use>
-                </svg>
-                X.com
-              </a>
-            </li>
-            <li>
-              <a href="https://bsky.app/profile/vite.dev" target="_blank">
-                <svg
-                  className="button-icon"
-                  role="presentation"
-                  aria-hidden="true"
-                >
-                  <use href="/icons.svg#bluesky-icon"></use>
-                </svg>
-                Bluesky
-              </a>
-            </li>
-          </ul>
-        </div>
-      </section>
+            </p>
+          </article>
 
-      <div className="ticks"></div>
-      <section id="spacer"></section>
-    </>
+          <article className="info-card">
+            <h3>What I am researching</h3>
+            <p>
+              I am researching how effectively a lightweight JavaScript monitor can detect, block, and explain selected attempts by third party scripts to access or send browser data. 
+              As an undergraduate research project, this work is also helping me learn the fundamentals of browser security, runtime monitoring, and policy enforcement.
+
+            </p>
+          </article>
+
+          <article className="info-card">
+            <h3>What I am learning</h3>
+            <p>
+              Through this project, I am learning how to build with React and
+              TypeScript, work with browser APIs, and create a runtime monitor
+              that follows security policies. I am also gaining experience with
+              research design, testing, and explaining technical work clearly.
+            </p>
+          </article>
+        </section>
+
+        <section className="status-section">
+          <div>
+            <p className="status-label">Current stage</p>
+            <h2>Version 2 foundation</h2>
+          </div>
+
+          <p>
+             Version 2 has been set up using React and TypeScript. My next step
+             is to build the policy system that will define which browser actions
+             are allowed or blocked before I rebuild the runtime monitor.
+          </p>
+        </section>
+      </main>
+
+      <footer>
+        <p>
+          Created by Angel Flores as an undergraduate browser security research
+          project.
+        </p>
+      </footer>
+    </div>
   )
 }
 
