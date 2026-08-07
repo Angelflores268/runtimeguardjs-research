@@ -16,6 +16,7 @@ export type PolicyDecision = {
 const ALLOWED_DOMAINS = [
   "api.example.com",
   "trusted.example.com",
+  "localhost",
 ];
 
 const PROTECTED_STORAGE_KEYS = [
