@@ -4,6 +4,7 @@ import "./App.css";
 import {
   getEvents,
   subscribeToEvents,
+  clearEvents,
   type MonitorEvent,
 } from "./eventLogger";
 
@@ -100,6 +101,13 @@ function App() {
               Actions monitored by RuntimeGuardJS appear here with the policy
               decision and explanation.
             </p>
+
+            <button
+              className="secondary-button"
+              onClick={clearEvents}
+            >
+              Clear event log
+            </button>
           </div>
 
           <div className="event-list">

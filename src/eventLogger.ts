@@ -51,3 +51,11 @@ export function subscribeToEvents(
     );
   };
 }
+
+export function clearEvents() {
+  events = [];
+
+  for (const listener of listeners) {
+    listener([...events]);
+  }
+}
