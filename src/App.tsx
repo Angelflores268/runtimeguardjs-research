@@ -8,10 +8,31 @@ import {
   type MonitorEvent,
 } from "./eventLogger";
 
+import {
+  runNormalBehavior,
+  runProtectedDataAccess,
+  runDataExfiltration,
+} from "./securityScenarios";
+
+import {
+  getPolicyMode,
+  setPolicyMode,
+  type PolicyMode,
+} from "./policy";
+
 function App() {
   const [events, setEvents] = useState<MonitorEvent[]>(
     getEvents()
   );
+
+  const [selectedPolicy, setSelectedPolicy] =
+    useState<PolicyMode>(getPolicyMode());
+
+  function changePolicy(mode: PolicyMode) {
+    setPolicyMode(mode);
+    setSelectedPolicy(mode);
+    clearEvents();
+  }
 
   useEffect(() => {
     const unsubscribe = subscribeToEvents((newEvents) => {
@@ -92,6 +113,82 @@ function App() {
           </p>
         </section>
 
+        <section className="lab-section">
+          <div>
+            <p className="status-label">Interactive experiment</p>
+            <h2>Security Lab</h2>
+
+            <p>
+              Run controlled JavaScript scenarios to see how RuntimeGuardJS
+              detects, allows, or blocks different browser actions.
+            </p>
+          </div>
+
+          <div className="policy-selector">
+            <p>
+              <strong>Current policy:</strong> {selectedPolicy}
+            </p>
+
+            <div className="lab-actions">
+              <button
+                className={
+                  selectedPolicy === "permissive"
+                    ? "primary-button"
+                    : "secondary-button"
+                }
+                onClick={() => changePolicy("permissive")}
+              >
+                Permissive
+              </button>
+
+              <button
+                className={
+                  selectedPolicy === "balanced"
+                    ? "primary-button"
+                    : "secondary-button"
+                }
+                onClick={() => changePolicy("balanced")}
+              >
+                Balanced
+              </button>
+
+              <button
+                className={
+                  selectedPolicy === "strict"
+                    ? "primary-button"
+                    : "secondary-button"
+                }
+                onClick={() => changePolicy("strict")}
+              >
+                Strict
+              </button>
+            </div>
+          </div>
+
+          <div className="lab-actions">
+            <button
+              className="primary-button"
+              onClick={runNormalBehavior}
+            >
+              Run normal behavior
+            </button>
+
+            <button
+              className="secondary-button"
+              onClick={runProtectedDataAccess}
+            >
+              Attempt protected data access
+            </button>
+
+            <button
+              className="secondary-button"
+              onClick={runDataExfiltration}
+            >
+              Attempt data exfiltration
+            </button>
+          </div>
+        </section>
+
         <section className="event-section">
           <div>
             <p className="status-label">Runtime activity</p>
@@ -153,3 +250,5 @@ function App() {
 }
 
 export default App;
+
+
