@@ -230,6 +230,10 @@ function App() {
                   </p>
 
                   <p>
+                    <strong>Matched rule:</strong> {event.rule}
+                  </p>
+
+                  <p>
                     <strong>Reason:</strong> {event.reason}
                   </p>
                 </article>
@@ -250,5 +254,6 @@ function App() {
 }
 
 export default App;
+
 
 

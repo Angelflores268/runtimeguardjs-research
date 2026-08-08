@@ -7,6 +7,7 @@ export type MonitorEvent = {
   target: string;
   allowed: boolean;
   reason: string;
+  rule: string;
 };
 
 let events: MonitorEvent[] = [];

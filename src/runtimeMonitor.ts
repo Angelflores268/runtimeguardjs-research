@@ -25,12 +25,14 @@ export function installFetchMonitor() {
       target,
       allowed: decision.allowed,
       reason: decision.reason,
+      rule: decision.rule,
     });
 
     console.log("RuntimeGuardJS fetch attempt:", {
       target,
       allowed: decision.allowed,
       reason: decision.reason,
+      rule: decision.rule,
     });
 
     if (!decision.allowed) {
@@ -60,12 +62,14 @@ export function installStorageMonitor() {
       target: key,
       allowed: decision.allowed,
       reason: decision.reason,
+      rule: decision.rule,
     });
 
     console.log("RuntimeGuardJS storage read attempt:", {
       target: key,
       allowed: decision.allowed,
       reason: decision.reason,
+      rule: decision.rule,
     });
 
     if (!decision.allowed) {
@@ -91,12 +95,14 @@ export function installStorageMonitor() {
       target: key,
       allowed: decision.allowed,
       reason: decision.reason,
+      rule: decision.rule,
     });
 
     console.log("RuntimeGuardJS storage write attempt:", {
       target: key,
       allowed: decision.allowed,
       reason: decision.reason,
+      rule: decision.rule,
     });
 
     if (!decision.allowed) {
@@ -108,4 +114,3 @@ export function installStorageMonitor() {
     originalSetItem.call(this, key, value);
   };
 }
-

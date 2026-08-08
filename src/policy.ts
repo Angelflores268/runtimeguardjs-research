@@ -11,6 +11,7 @@ export type SecurityAction = {
 export type PolicyDecision = {
   allowed: boolean;
   reason: string;
+  rule: string;
 };
 
 export type PolicyMode =
@@ -48,6 +49,7 @@ export function evaluatePolicy(
     return {
       allowed: true,
       reason: `The permissive policy allows this ${action.type} action.`,
+      rule: "Permissive Default Allow",
     };
   }
 
@@ -62,6 +64,7 @@ export function evaluatePolicy(
             allowed: true,
             reason:
               "The strict policy allows requests to localhost.",
+            rule: "Localhost Exception",
           };
         }
 
@@ -69,11 +72,13 @@ export function evaluatePolicy(
           allowed: false,
           reason:
             "The strict policy blocks requests to external domains.",
+          rule: "Strict External Network Restriction",
         };
       } catch {
         return {
           allowed: false,
           reason: "The request target is not a valid URL.",
+          rule: "Valid URL Requirement",
         };
       }
     }
@@ -82,6 +87,7 @@ export function evaluatePolicy(
       allowed: false,
       reason:
         "The strict policy blocks browser storage access.",
+      rule: "Strict Storage Restriction",
     };
   }
 
@@ -94,17 +100,20 @@ export function evaluatePolicy(
         return {
           allowed: true,
           reason: `Requests to ${url.hostname} are allowed by the balanced policy.`,
+          rule: "Domain Allowlist",
         };
       }
 
       return {
         allowed: false,
         reason: `Requests to ${url.hostname} are not allowed by the balanced policy.`,
+        rule: "Domain Allowlist",
       };
     } catch {
       return {
         allowed: false,
         reason: "The request target is not a valid URL.",
+        rule: "Valid URL Requirement",
       };
     }
   }
@@ -117,17 +126,21 @@ export function evaluatePolicy(
       return {
         allowed: false,
         reason: `Access to "${action.target}" is blocked because it is protected.`,
+        rule: "Protected Storage Key",
       };
     }
 
     return {
       allowed: true,
       reason: `Access to "${action.target}" is allowed by the balanced policy.`,
+      rule: "Unprotected Storage Key",
     };
   }
 
   return {
     allowed: false,
     reason: "The action type is not recognized.",
+    rule: "Unknown Action Default Deny",
   };
 }
+
