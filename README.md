@@ -26,7 +26,7 @@ The final prototype includes both a research overview and an interactive Securit
 
 RuntimeGuardJS currently monitors selected uses of:
 
-* `fetch()`
+* fetch()
 * Browser storage reads
 * Browser storage writes
 
@@ -227,3 +227,4 @@ University of Dayton
 Live Project: https://runtimeguardjs.com
 
 GitHub: https://github.com/Angelflores268/runtimeguardjs-research
+s
